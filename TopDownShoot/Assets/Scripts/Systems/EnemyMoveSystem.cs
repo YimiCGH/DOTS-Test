@@ -12,11 +12,15 @@ namespace DOTSTest
     {
         protected override void OnUpdate()
         {
+            if(!SystemAPI.TryGetSingletonEntity<PlayerTag>(out var player)){
+                return;
+            }
+        
 
             float deltaTime = SystemAPI.Time.DeltaTime;
             
             //TODO 改为流场移动
-            var player = SystemAPI.GetSingletonEntity<PlayerTag>();
+            
             var playerTsf = SystemAPI.GetComponent<LocalTransform>(player);
             
             float3 targetPos = playerTsf.Position;

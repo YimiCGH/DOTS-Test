@@ -16,7 +16,7 @@ namespace DOTSTest
     {
         public override void Bake(BulletTagAuthoring authoring)
         {     
-            var entity = GetEntity(TransformUsageFlags.None);
+            var entity = GetEntity(TransformUsageFlags.Dynamic);
             AddComponent<BulletTag>(entity);
         }
     }

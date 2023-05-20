@@ -10,13 +10,13 @@ namespace DOTSTest
 
         protected override void OnUpdate()
         {
-            var entityCommandBuffer = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>()
+            var ecb = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>()
                 .CreateCommandBuffer(World.Unmanaged);
             
 
             foreach (HealthAspect aspect in SystemAPI.Query<HealthAspect>())
             {
-                aspect.Check(entityCommandBuffer);
+                aspect.Check(ecb);
             }
         }
         

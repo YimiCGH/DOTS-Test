@@ -16,8 +16,7 @@ namespace DOTSTest
     {
         public override void Bake(PlayerTagAuthoring authoring)
         {     
-            var entity = GetEntity(TransformUsageFlags.None);
-            //var entity = GetEntity(TransformUsageFlags.Dynamic);
+            var entity = GetEntity(TransformUsageFlags.Dynamic);
             AddComponent<PlayerTag>(entity);
         }
     }

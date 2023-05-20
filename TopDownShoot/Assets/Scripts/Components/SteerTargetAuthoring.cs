@@ -18,7 +18,7 @@ namespace DOTSTest
     {
         public override void Bake(SteerTargetAuthoring authoring)
         {
-            var entity = GetEntity(TransformUsageFlags.None);
+            var entity = GetEntity(TransformUsageFlags.Dynamic);
             AddComponent(entity,new SteerTarget()
             {
                 Speed = authoring.Speed

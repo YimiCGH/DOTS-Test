@@ -7,14 +7,16 @@ namespace DOTSTest
     {
         protected override void OnUpdate()
         {
-            var entityCommandBuffer = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>()
+            //通过 GetSingleton 的方式 创建 的commandBuffer，可以自动playback,和dispose
+            var ecb = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>()
                 .CreateCommandBuffer(World.Unmanaged);
             
 
             foreach (HealthAspect aspect in SystemAPI.Query<HealthAspect>())
             {
-                aspect.Check(entityCommandBuffer);
+                aspect.Check(ecb);
             }
+            
         }
         
         public readonly partial struct HealthAspect:IAspect

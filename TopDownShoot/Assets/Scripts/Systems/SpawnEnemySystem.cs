@@ -17,12 +17,16 @@ namespace DOTSTest
 
         protected override void OnUpdate()
         {
+            if (!SystemAPI.TryGetSingleton<EnemySpawner>(out var spawnerComponent))
+            {
+                return;
+            }
+            
             if (_cameraViewRange == null)
             {
                 _cameraViewRange = new CameraViewRange();
-            }
+            }            
 
-            var spawnerComponent = SystemAPI.GetSingleton<EnemySpawner>();
             if (_Timer > 0)
             {
                 _Timer -= SystemAPI.Time.DeltaTime;
@@ -33,16 +37,16 @@ namespace DOTSTest
             var query = EntityManager.CreateEntityQuery(typeof(EnemyTag));            
             
 
-            var entityCommandBuffer = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>()
+            var ecb = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>()
                 .CreateCommandBuffer(World.Unmanaged);
             
             if (query.CalculateEntityCount() < spawnerComponent.MaxNum)
             {
-                var entity = entityCommandBuffer.Instantiate(spawnerComponent.Prefab);
+                var entity = ecb.Instantiate(spawnerComponent.Prefab);
                
                 var pos = _cameraViewRange.GetRandomSpawnPoint();
               
-                entityCommandBuffer.SetComponent(entity,new LocalTransform
+                ecb.SetComponent(entity,new LocalTransform
                 {
                     Position = pos,
                     Scale = 1,

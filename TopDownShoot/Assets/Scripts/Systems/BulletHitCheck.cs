@@ -22,8 +22,7 @@ namespace DOTSTest
         }
         
         protected override void OnUpdate()
-        {            
-            //var bulletStatusType = GetComponentTypeHandle<BulletStatus>(false);
+        {
             var translationType = GetComponentTypeHandle<LocalTransform>(true);
             var enemyStatusType = GetComponentTypeHandle<EnemyStatus>(false);
 
@@ -48,6 +47,7 @@ namespace DOTSTest
 
             bulletTransforms.Dispose();
             bulletStatus.Dispose();
+            bulletEntities.Dispose();
         }
 
         [BurstCompile]

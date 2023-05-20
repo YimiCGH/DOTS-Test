@@ -14,23 +14,23 @@ namespace DOTSTest
     public partial class AutoShootSystem:SystemBase
     {
         EntityQuery enemyGroup;        
-        EntityQuery playerGroup;
+        //EntityQuery playerGroup;
         
         protected override void OnCreate()
         {
-            playerGroup = GetEntityQuery(ComponentType.ReadOnly<LocalTransform>(), ComponentType.ReadOnly<PlayerTag>());
+            //playerGroup = GetEntityQuery(ComponentType.ReadOnly<LocalTransform>(), ComponentType.ReadOnly<PlayerTag>());
             enemyGroup = GetEntityQuery(ComponentType.ReadOnly<LocalTransform>(), ComponentType.ReadOnly<EnemyTag>());
         }
         protected override void OnUpdate()
         {
             float deltaTime = SystemAPI.Time.DeltaTime;
-            var entityCommandBuffer = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>()
+            var ecb = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>()
                 .CreateCommandBuffer(World.Unmanaged);
 
             foreach (CharacterShootAspect shootAspect in SystemAPI.Query<CharacterShootAspect>())
             {
                 var translationType = GetComponentTypeHandle<LocalTransform>(true);
-                shootAspect.GetTarget(entityCommandBuffer,enemyGroup,translationType,deltaTime,this.Dependency);
+                shootAspect.GetTarget(ecb,enemyGroup,translationType,deltaTime,this.Dependency);
             }
         }
 
