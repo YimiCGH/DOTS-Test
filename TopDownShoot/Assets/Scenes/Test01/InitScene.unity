@@ -256,8 +256,8 @@ MonoBehaviour:
   BulletPrefab: {fileID: 5976211602752318374, guid: 4601de51b84190943add00c57a58d7ed, type: 3}
   ShootTimeScale: 0.1
   ShootDistance: 15
-  SplitNum: 5
-  SplitAngle: 45
+  SplitNum: 8
+  SplitAngle: 60
 --- !u!114 &1491009444
 MonoBehaviour:
   m_ObjectHideFlags: 0

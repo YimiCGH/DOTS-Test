@@ -49,7 +49,7 @@ namespace DOTSTest
                 }
 
                 _shootCtl.ValueRW.shootCD = _shootCtl.ValueRW.ShootTimeScale;
-                NativeList<float3> result = new NativeList<float3>(10,Allocator.TempJob);
+                NativeList<float3> result = new NativeList<float3>(100,Allocator.TempJob);
 
                 var selectTargetJob = new SelectTargetChunkJob()
                 {

@@ -44,9 +44,9 @@ public class FPSCounter : MonoBehaviour
     private static string[] NumberString;
     private void Start()
     {
-        Application.targetFrameRate = 300;
+        Application.targetFrameRate = 500;
         
-        NumberString = new string[300];
+        NumberString = new string[500];
         for (int i = 0; i < NumberString.Length; i++)
         {
             NumberString[i] = i.ToString();
